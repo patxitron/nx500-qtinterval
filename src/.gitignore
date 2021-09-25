@@ -1,0 +1,5 @@
+build
+core
+qtinterval
+*.o
+moc_*

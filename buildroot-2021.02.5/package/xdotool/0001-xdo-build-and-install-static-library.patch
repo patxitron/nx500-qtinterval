@@ -1,0 +1,42 @@
+Common subdirectories: a/examples and b/examples
+Common subdirectories: a/ext and b/ext
+diff -u a/Makefile b/Makefile
+--- a/Makefile	2016-08-05 19:37:12.000000000 +0200
++++ b/Makefile	2021-04-06 19:27:49.219735226 +0200
+@@ -55,14 +55,15 @@
+          cmd_sleep.o cmd_get_display_geometry.o
+ 
+ .PHONY: all
+-all: xdotool.1 libxdo.$(LIBSUFFIX) libxdo.$(VERLIBSUFFIX) xdotool
++all: xdotool.1 libxdo.$(LIBSUFFIX) libxdo.$(VERLIBSUFFIX) libxdo.a xdotool
+ 
+ .PHONY: static
+ static: xdotool.static
+ 
+ .PHONY: install-static
+-install-static: xdotool.static
++install-static: xdotool.static libxdo.a
+ 	install -d $(DINSTALLBIN)
++	install libxdo.a $(DINSTALLLIB)/libxdo.a
+ 	install -m 755 xdotool.static $(DINSTALLBIN)/xdotool
+ 
+ xdotool.static: xdotool.o $(CMDOBJS) xdo.o xdo_search.o
+@@ -85,13 +86,15 @@
+ 
+ 
+ .PHONY: installprog
+-installprog: xdotool
++installprog: xdotool libxdo.a
+ 	install -d $(DINSTALLBIN)
++	install libxdo.a $(DINSTALLLIB)/libxdo.a
+ 	install -m 755 xdotool $(DINSTALLBIN)/
+ 
+ .PHONY: installlib
+-installlib: libxdo.$(LIBSUFFIX)
++installlib: libxdo.$(LIBSUFFIX) libxdo.a
+ 	install -d $(DINSTALLLIB)
++	install libxdo.a $(DINSTALLLIB)/libxdo.a
+ 	install libxdo.$(LIBSUFFIX) $(DINSTALLLIB)/libxdo.$(VERLIBSUFFIX)
+ 	ln -sf libxdo.$(VERLIBSUFFIX) $(DINSTALLLIB)/libxdo.$(LIBSUFFIX)
+ 
+Common subdirectories: a/t and b/t

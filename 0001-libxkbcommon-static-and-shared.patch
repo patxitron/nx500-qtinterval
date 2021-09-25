@@ -1,0 +1,62 @@
+Common subdirectories: a/bench and b/bench
+Common subdirectories: a/doc and b/doc
+Common subdirectories: a/fuzz and b/fuzz
+diff -u a/meson.build b/meson.build
+--- a/meson.build	2020-11-23 19:31:00.959548000 +0100
++++ b/meson.build	2021-04-02 16:29:00.050328355 +0200
+@@ -7,6 +7,7 @@
+         'warning_level=2',
+         'b_lundef=true',
+     ],
++    default_library: 'both',
+     meson_version : '>= 0.49.0',
+ )
+ pkgconfig = import('pkgconfig')
+@@ -245,6 +246,17 @@
+     install: true,
+     include_directories: include_directories('src'),
+ )
++libxkbcommon = static_library(
++    'xkbcommon',
++    'xkbcommon/xkbcommon.h',
++    libxkbcommon_sources,
++    link_args: libxkbcommon_link_args,
++    link_depends: 'xkbcommon.map',
++    gnu_symbol_visibility: 'hidden',
++    version: '0.0.0',
++    install: true,
++    include_directories: include_directories('src'),
++)
+ install_headers(
+     'xkbcommon/xkbcommon.h',
+     'xkbcommon/xkbcommon-compat.h',
+@@ -306,7 +318,23 @@
+             xcb_xkb_dep,
+         ],
+     )
+-    install_headers(
++     libxkbcommon_x11 = static_library(
++        'xkbcommon-x11',
++        'xkbcommon/xkbcommon-x11.h',
++        libxkbcommon_x11_sources,
++        link_args: libxkbcommon_x11_link_args,
++        link_depends: 'xkbcommon-x11.map',
++        gnu_symbol_visibility: 'hidden',
++        version: '0.0.0',
++        install: true,
++        include_directories: include_directories('src'),
++        link_with: libxkbcommon,
++        dependencies: [
++            xcb_dep,
++            xcb_xkb_dep,
++        ],
++    )
++   install_headers(
+         'xkbcommon/xkbcommon-x11.h',
+         subdir: 'xkbcommon',
+     )
+Common subdirectories: a/scripts and b/scripts
+Common subdirectories: a/src and b/src
+Common subdirectories: a/test and b/test
+Common subdirectories: a/tools and b/tools
+Common subdirectories: a/xkbcommon and b/xkbcommon
