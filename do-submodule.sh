@@ -14,8 +14,8 @@ if [ -d "${THIS_DIR}/${1}" ]; then
         make oldconfig
         make
         # I can't guess a better method to get the libxdo library installed in the build environment.
-        cp -f output/build/xdotool-3.20160805.1/libxdo.a output/host/arm-buildroot-linux-musleabi/sysroot/usr/lib/
-        cp -f output/build/xdotool-3.20160805.1/xdo.h output/host/arm-buildroot-linux-musleabi/sysroot/usr/include/
+        cp -f output/build/xdotool-3.20160805.1/libxdo.a output/host/arm-buildroot-linux-musleabihf/sysroot/usr/lib/
+        cp -f output/build/xdotool-3.20160805.1/xdo.h output/host/arm-buildroot-linux-musleabihf/sysroot/usr/include/
         ;;
     *)
         echo "Unknown submodule"

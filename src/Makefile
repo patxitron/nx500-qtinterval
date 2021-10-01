@@ -1,9 +1,9 @@
-SYSROOT = $(BUILDROOT)/output/host/arm-buildroot-linux-musleabi/sysroot
+SYSROOT = $(BUILDROOT)/output/host/arm-buildroot-linux-musleabihf/sysroot
 INCLUDEPATH = $(SYSROOT)/usr/include
 LIBPATH = $(SYSROOT)/usr/lib
 QTPLUGINS = $(LIBPATH)/qt/plugins
 BINARIES = $(BUILDROOT)/output/host/bin
-PREFIX = arm-buildroot-linux-musleabi-
+PREFIX = arm-buildroot-linux-musleabihf-
 
 CXX = $(BINARIES)/$(PREFIX)g++
 LD = $(BINARIES)/$(PREFIX)g++
