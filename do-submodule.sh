@@ -4,10 +4,6 @@ if [ -d "${THIS_DIR}/${1}" ]; then
     cd "${THIS_DIR}/${1}"
     case "${1}" in
     buildroot-2021.02.5)
-        if ! [ -f Makefile ]; then
-            git submodule init
-            git submodule update
-        fi
         cp -f ../buildroot-2021.02.5.config .config
         cp -f ../0001-libxkbcommon-static-and-shared.patch package/libxkbcommon/
         cp -f ../0001-xdo-build-and-install-static-library.patch package/xdotool/

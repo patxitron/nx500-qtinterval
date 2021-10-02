@@ -6,6 +6,8 @@ export MOC := $(PROJECT_DIR)/buildroot-2021.02.5/output/host/usr/bin/moc
 
 TARGET := src/qtinterval
 
+.PHONY: $(TARGET)
+
 all: release
 
 debug: ARG := debug
